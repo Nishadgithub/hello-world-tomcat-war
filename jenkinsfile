@@ -19,7 +19,7 @@ pipeline{
             steps{
                 sshagent(['deply_user']) {
 
-                 scp webapp/target/webapp.war ubuntu@54.242.80.51:/opt/tomcat9/webapp
+                 //scp webapp/target/webapp.war ubuntu@54.242.80.51:/opt/tomcat9/webapp
                 }
             }
         }
