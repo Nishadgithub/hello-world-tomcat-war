@@ -23,9 +23,9 @@ pipeline{
                         sh """
                             scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/mvn/webapp/target/webapp.war ec2-user@172.31.32.35:/opt/tomcat9/webapps/
                     
-                            ssh ec2-user@172.31.32.35 /opt/tomcat8/bin/shutdown.sh
+                            ssh ec2-user@172.31.32.35 /opt/tomcat9/bin/shutdown.sh
                     
-                            ssh ec2-user@172.31.32.35 /opt/tomcat8/bin/startup.sh
+                            ssh ec2-user@172.31.32.35 /opt/tomcat9/bin/startup.sh
                 
                 """
                 }
