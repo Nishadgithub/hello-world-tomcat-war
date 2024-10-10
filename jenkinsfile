@@ -1,13 +1,10 @@
 pipeline{
     agent any
-    
-    environment{
-        PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
-    }
-    stages{
+   
+     stages{
         stage("Git Checkout"){
             steps{
-                git credentialsId: 'Password', url: 'https://github.com/Nagesh05021993/hello-world-tomcat-war.git'
+                git credentialsId: 'Nishad', url: 'https://github.com/Nishadgithub/hello-world-tomcat-war.git'
             }
         }
         stage("Maven Build"){
@@ -18,14 +15,16 @@ pipeline{
         }
        stage("Deploy"){
             steps{
-                    sshagent(['tomcat-user1']) {
+                    sshagent(['SSH_Tomcat']) {
+                     // some block
+                    } {
 
                         sh """
-                            scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/mvn/webapp/target/webapp.war ec2-user@172.31.32.35:/opt/tomcat9/webapps/
+                            scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/mvn/webapp/target/webapp.war ec2-user@172.31.45.90:/opt/tomcat9/webapps/
                     
-                            ssh ec2-user@172.31.32.35 /opt/tomcat9/bin/shutdown.sh
+                            ssh ec2-user@172.31.45.90 /opt/tomcat9/bin/shutdown.sh
                     
-                            ssh ec2-user@172.31.32.35 /opt/tomcat9/bin/startup.sh
+                            ssh ec2-user@172.31.45.90 /opt/tomcat9/bin/startup.sh
                 
                 """
                 }
